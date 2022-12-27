@@ -6,6 +6,7 @@ import {MUtilisateur} from "../../Models/Utilisateur";
 @Component({
   selector: "app-register",
   templateUrl: "./register.component.html",
+  styleUrls: ['./register.component.scss']
 })
 
 export class RegisterComponent implements OnInit {
@@ -29,11 +30,15 @@ export class RegisterComponent implements OnInit {
        // this.showSpinner = false;
        console.log(data)
         this.isSuccessful = true;
+        if(this.isSuccessful==true)
+        alert('l"employée est enregistré avec succés ');
       },
       (err) => {
         this.errorMessage = err.error;
         this.isSignUpFailed = true;
         console.log(this.errorMessage);
+        if(this.isSignUpFailed)
+        alert(' Remplir les champs');
       }
     );
 

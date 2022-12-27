@@ -13,6 +13,7 @@ import { DashboardComponent } from "./views/admin/dashboard/dashboard.component"
 import { MapsComponent } from "./views/admin/maps/maps.component";
 import { SettingsComponent } from "./views/admin/settings/settings.component";
 import { TablesComponent } from "./views/admin/tables/tables.component";
+import { DepechesComponent } from "./views/admin/depeches/depeches.component";
 
 // auth views
 import { LoginComponent } from "./views/auth/login/login.component";
@@ -55,6 +56,30 @@ import { AuthGuard } from "./services/_helpers/auth.guard";
 import { FormsModule } from "@angular/forms";
 import { RegisterService } from "./services/register/register.service";
 import { HttpClientModule } from '@angular/common/http';
+import { DepUserComponent } from './views/admin/dep-user/dep-user.component';
+import { CardDepechesComponent } from './components/cards/card-depeches/card-depeches.component';
+
+
+import { from } from "rxjs";
+
+import { CardListeDepComponent } from './components/cards/card-liste-dep/card-liste-dep.component';
+import { DepechesDropdownComponent } from './components/dropdowns/depeches-dropdown/depeches-dropdown.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { FilterPipeModule } from 'ngx-filter-pipe';
+import { ListDepAgComponent } from './views/admin/list-dep-ag/list-dep-ag.component';
+import { CardListDepAgComponent } from './components/cards/card-list-dep-ag/card-list-dep-ag.component';
+import { UpdateDepecheComponent } from './views/admin/update-depeche/update-depeche.component';
+import { CardUpdateDepecheComponent } from './components/cards/card-update-depeche/card-update-depeche.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NotifiDropdownComponent } from './components/dropdowns/notifi-dropdown/notifi-dropdown.component';
+import { ChartsModule } from 'ng2-charts';
+import { AlertValidationComponent } from './components/cards/alert-validation/alert-validation.component';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -96,10 +121,45 @@ import { HttpClientModule } from '@angular/common/http';
     CardParametersComponent,
     EquipementComponent,
     CardEquipementComponent,
+    DepUserComponent,
+    CardDepechesComponent,
+    DepechesComponent,
+    CardListeDepComponent,
+    DepechesDropdownComponent,
+    ListDepAgComponent,
+    CardListDepAgComponent,
+    UpdateDepecheComponent,
+    CardUpdateDepecheComponent,
+    NotifiDropdownComponent,
+    AlertValidationComponent,
+    
+
+    
+  
+
   
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule ],
-  providers: [authInterceptorProviders, RegisterService],
+  imports: [BrowserModule, 
+    AppRoutingModule, 
+    FormsModule, 
+    HttpClientModule, 
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    FilterPipeModule,
+    BrowserAnimationsModule,
+    ChartsModule,
+    MatDialogModule,
+    MatSnackBarModule
+ 
+   ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA],
+  providers: [authInterceptorProviders, RegisterService,{
+    provide: MatDialogRef,
+    useValue: {}
+  },
+],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

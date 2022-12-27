@@ -1,0 +1,196 @@
+<div
+  class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-200 border-0"
+>
+  <div class="rounded-t bg-white mb-0 px-6 py-6">
+    <div class="text-center flex justify-between">
+      <h6 class="text-gray-800 text-xl font-bold">Update dépêches</h6>
+      <div>{{DateN|date}}</div>
+      <button
+        class="bg-green-500 text-white active:bg-green-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+        type="button"
+      >
+      Dépêches
+      </button>
+    </div>
+  </div>
+  <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+    <form #teamForm="ngForm" name="form">
+      <h6 class="text-gray-500 text-sm mt-3 mb-6 font-bold uppercase">
+      les informations
+      </h6>
+      <div class="flex flex-wrap">
+        <div class="w-full lg:w-6/12 px-4">
+          <div class="relative w-full mb-3">
+            <label
+              class="block uppercase text-gray-700 text-xs font-bold mb-2"
+              htmlFor="grid-password"
+            >
+             Emetteur
+            </label>
+            <input
+              type="text"
+              [(ngModel)]="depDepeches.emetteur"
+              [ngModelOptions]="{standalone: true}"
+              class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
+           
+            />
+          </div>
+        </div>
+        <div  class="w-full lg:w-6/12 px-4">
+          <label  class="block uppercase text-gray-700 text-xs font-bold mb-2"
+          htmlFor="grid-password">Destinataire</label>
+          <div class="mt-1" >
+            <select name="user" [(ngModel)]="seletcedDestinataire" (selectionChange)="getDestinataireId($event.value)" required class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150">
+              <option value="small" *ngFor="let user of users" [value]="user.id">{{user.firstName}} {{user.lastName}}</option>             
+            </select>
+          </div>
+        </div>
+
+
+  
+        <div class="w-full lg:w-6/12 px-4">
+          <div class="relative w-full mb-3">
+            <label
+              class="block uppercase text-gray-700 text-xs font-bold mb-2"
+              htmlFor="grid-password"
+            >
+              Heure
+            </label>
+            <input
+              type="time"
+              [(ngModel)]="depDepeches.heure"
+              [ngModelOptions]="{standalone: true}"
+              
+              class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
+              
+            />
+          </div>
+        </div>
+        
+        <div  class="w-full lg:w-6/12 px-4">
+          <label  class="block uppercase text-gray-700 text-xs font-bold mb-2"
+          htmlFor="grid-password">Station</label>
+          <div class="mt-1" >
+            <select name="station" [(ngModel)]="seletcedStation" (selectionChange)="getStationId($event.value)" required class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150">
+              <option value="small" *ngFor="let station of stations" [value]="station.id">{{station.libelle}} </option>
+            </select>
+          </div>          
+        </div>
+      </div>
+
+      <hr class="mt-6 border-b-1 border-gray-400" />
+
+      <h6 class="text-gray-500 text-sm mt-3 mb-6 font-bold uppercase">
+        Matériels
+      </h6>
+      <div class="flex flex-wrap">
+        <div  class="w-full lg:w-6/12 px-4">
+
+          <label  class="block uppercase text-gray-700 text-xs font-bold mb-2"
+          htmlFor="grid-password">Equipement</label>
+          <div class="mt-1" >
+            <select name="material" [(ngModel)]="seletcedEquipement" (selectionChange)="getMaterialId($event.value)" required class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150">
+              <option value="small" *ngFor="let material of materials" [value]="material.id">{{material.libelle}}</option>
+            </select>
+
+          </div>
+           
+        </div>
+        <div  class="w-full lg:w-6/12 px-4">
+          <label  class="block uppercase text-gray-700 text-xs font-bold mb-2"
+          htmlFor="grid-password">Annomalie</label>
+          <div class="mt-1" >
+            <select name="anomalie" [(ngModel)]="seletcedAnomalie" (selectionChange)="getAnomalieId($event.value)" required class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150">
+              <option value="small" *ngFor="let anomalie of anomalies" [value]="anomalie.id">{{anomalie.libelle}}</option>
+            </select>
+
+          </div>
+           
+        </div>
+        
+        
+      </div>
+
+      <hr class="mt-6 border-b-1 border-gray-400" />
+
+      <h6 class="text-gray-500 text-sm mt-3 mb-6 font-bold uppercase">
+       les  Services et le type des dépêches 
+      </h6>
+      <div class="flex flex-wrap">
+        <div  class="w-full lg:w-6/12 px-4">
+          <div class="relative w-full mb-3">
+          <label  class="block uppercase text-gray-700 text-xs font-bold mb-2"
+          htmlFor="grid-password">Services</label>
+          <div class="mt-1" >
+            <select name="service" [(ngModel)]="selectedService" (selectionChange)="getServiceId($event.value)" required class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150">
+              <option value="small" *ngFor="let service of services" [value]="service.id">{{service.libelle}}</option>
+            </select>
+           </div>
+          </div>
+           
+        </div>
+        <div  class="w-full lg:w-6/12 px-4">
+          <label  class="block uppercase text-gray-700 text-xs font-bold mb-2"
+          htmlFor="grid-password">Type du dépêche</label>
+          <div class="mt-1" >
+            <select name="TypeDepeche" [(ngModel)]="selectedTypeDepeche" (selectionChange)="getTypeDepecheId($event.value)" required class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150">
+              <option value="small" *ngFor="let TypeDepeche of TypeDepeches" [value]="TypeDepeche.id">{{TypeDepeche.libelle}}</option>
+            </select>
+          </div>
+           
+        </div>
+
+
+        <div  class="w-full lg:w-6/12 px-4">
+        
+          <label  class="block uppercase text-gray-700 text-xs font-bold mb-2"
+          htmlFor="grid-password">status</label>
+          <div class="mt-1" >
+            <select name="Statu" [(ngModel)]="selectedStatus"  (selectionChange)="getStatusId($event.value)" required class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150">
+              <option value="small" *ngFor="let Statu of Status" [value]="Statu.id">{{Statu.libelle}}</option>
+            </select>
+          </div>
+      
+        </div>
+        
+        
+      </div>
+
+      <hr class="mt-6 border-b-1 border-gray-400" />
+
+      <h6 class="text-gray-500 text-sm mt-3 mb-6 font-bold uppercase">
+        Description
+      </h6>
+      <div class="flex flex-wrap">
+        <div class="w-full lg:w-12/12 px-4">
+          <div class="relative w-full mb-3">
+            <label
+              class="block uppercase text-gray-700 text-xs font-bold mb-2"
+              htmlFor="grid-password"
+            >
+              Description
+            </label>
+            <textarea
+              type="text"
+              [(ngModel)]="depDepeches.reparageDescription"
+              [ngModelOptions]="{standalone: true}"
+              class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
+              rows="4"
+            >
+                 
+                </textarea
+            >
+          </div>
+        </div>
+      </div>
+
+       <button
+          class="bg-green-500 text-white active:bg-green-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150 grid justify-items-stretch"
+          type="button"
+          (click)="updateDepeche()"
+        >
+        Enregistrer
+        </button>
+    </form>
+  </div>
+</div>

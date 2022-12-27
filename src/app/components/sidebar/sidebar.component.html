@@ -87,7 +87,7 @@
       <h6
         class="md:min-w-full text-gray-600 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
       >
-        Admin Layout Pages
+        les pages d'administration
       </h6>
       <!-- Navigation -->
 
@@ -111,6 +111,25 @@
               "
             ></i>
             Dashboard
+          </a>
+        </li>
+        <li class="items-center">
+          <a
+            [routerLink]="['/auth/register']"
+            class="text-xs uppercase py-3 font-bold block"
+            routerLinkActive
+            #adminRegister="routerLinkActive"
+            [ngClass]="
+            adminRegister.isActive
+                ? 'text-green-500 hover:text-green-500'
+                : 'text-gray-800 hover:text-gray-600'
+            "
+          >
+            <i
+              class="fas fa-tools mr-2 text-sm"
+              [ngClass]="adminRegister.isActive ? 'opacity-75' : 'text-gray-400'"
+            ></i>
+         Ajouter utilisateur
           </a>
         </li>
 
@@ -138,6 +157,8 @@
 
 
 
+    
+
        
         <li class="items-center">
           <a
@@ -155,14 +176,89 @@
               class="fas fa-table mr-2 text-sm"
               [ngClass]="adminTables.isActive ? 'opacity-75' : 'text-gray-400'"
             ></i>
-            Tables des employées
+            liste des employées
           </a>
         </li>
+
+
+
+
+        <li class="items-center">
+          <a
+            [routerLink]="['/admin/depeches']"
+            class="text-xs uppercase py-3 font-bold block"
+            routerLinkActive
+            #admindepeches="routerLinkActive"
+            [ngClass]="
+              admindepeches.isActive
+                ? 'text-green-500 hover:text-green-500'
+                : 'text-gray-800 hover:text-gray-600'
+            "
+          >
+            <i
+              class="fas fa-table mr-2 text-sm"
+              [ngClass]="admindepeches.isActive ? 'opacity-75' : 'text-gray-400'"
+            ></i>
+            liste des Dépêches
+          </a>
+        </li>
+        <li class="items-center">
+          <a
+            [routerLink]="['/admin/list-dep-ag']"
+            class="text-xs uppercase py-3 font-bold block"
+            routerLinkActive
+            #adminlistdepag="routerLinkActive"
+            [ngClass]="
+              adminlistdepag.isActive
+                ? 'text-green-500 hover:text-green-500'
+                : 'text-gray-800 hover:text-gray-600'
+            "
+          >
+            <i
+              class="fas fa-table mr-2 text-sm"
+              [ngClass]="adminlistdepag.isActive ? 'opacity-75' : 'text-gray-400'"
+            ></i>
+            liste des Dépêches Agent
+          </a>
+        </li>
+        
       </ul>
+       
+      <hr class="my-4 md:min-w-full" />
+      <h6
+      class="md:min-w-full text-gray-600 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
+    >
+     user pages 
+    </h6>
+    <ul class="md:flex-col md:min-w-full flex flex-col list-none">
+      <li class="items-center">
+        <a
+          [routerLink]="['/admin/dep-user']"
+          class="text-xs uppercase py-3 font-bold block"
+          routerLinkActive
+          #admindepuser="routerLinkActive"
+          [ngClass]="
+            admindepuser.isActive
+              ? 'text-green-500 hover:text-green-500'
+              : 'text-gray-800 hover:text-gray-600'
+          "
+        >
+          <i
+            class="fas fa-edit mr-2 text-sm"
+            [ngClass]="
+              admindepuser.isActive ? 'opacity-75' : 'text-gray-400'
+            "
+          ></i>
+         Dépêches(AG)
+        </a>
+      </li>
+      </ul>
+
 
       <!-- Divider -->
       <hr class="my-4 md:min-w-full" />
       <!-- Heading -->
+      
       <h6
         class="md:min-w-full text-gray-600 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
       >
@@ -211,90 +307,13 @@
            paramétres des Equipements
           </a>
         </li>
-        <li class="items-center">
+        
          
-            <i
-              class="fas fa-tools mr-2 text-sm"
-              [ngClass]="adminEquipement.isActive ? 'opacity-75' : 'text-gray-400'"
-            ></i>
-           paramétres des xxxxx
-          
-        </li>
-
-        <li class="items-center">
-       
-            <i
-              class="fas fa-tools mr-2 text-sm"
-              [ngClass]="adminEquipement.isActive ? 'opacity-75' : 'text-gray-400'"
-            ></i>
-           paramétres des yyyyy
-          
-        </li>
-
 
        
       </ul>
 
-      <!-- Divider -->
-      <hr class="my-4 md:min-w-full" />
-      <!-- Heading -->
-      <h6
-        class="md:min-w-full text-gray-600 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
-      >
-        No Layout Pages
-      </h6>
-      <!-- Navigation -->
-
-      <ul class="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
-        <li class="items-center">
-          <a
-            [routerLink]="['/landing']"
-            class="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
-          >
-            <i class="fas fa-newspaper text-gray-400 mr-2 text-sm"></i>
-            <!--Landing Page-->
-          </a>
-        </li>
-
-        <li class="items-center">
-          <a
-            [routerLink]="['/profile']"
-            class="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
-          >
-            <i class="fas fa-user-circle text-gray-400 mr-2 text-sm"></i>
-           <!--Profile Page--> 
-          </a>
-        </li>
-        <li class="items-center">
-          <a
-            [routerLink]="['/auth/login']"
-            class="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
-          >
-            <i class="fas fa-fingerprint text-gray-400 mr-2 text-sm"></i>
-            <!--Login--> 
-          </a>
-        </li>
-
-        <li class="items-center">
-          <a
-            [routerLink]="['/auth/register']"
-            class="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
-          >
-            <i class="fas fa-clipboard-list text-gray-400 mr-2 text-sm"></i>
-            <!-- Register-->
-          </a>
-        </li>
-      </ul>
-
-      <!-- Divider -->
-      <hr class="my-4 md:min-w-full" />
-      <!-- Heading -->
-      <h6
-        class="md:min-w-full text-gray-600 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
-      >
-        Documentation
-      </h6>
-      <!-- Navigation -->
+   
      
     </div>
   </div>

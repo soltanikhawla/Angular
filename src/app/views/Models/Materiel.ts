@@ -6,9 +6,9 @@ export class MMateriel {
     id: number;
     libelle: string;
     emplacement:string;
-    numérotation:number;
-    numéroSérie:number;
-    anomalie:MAnomalie;
-    typeMateriel:MTypeMateriel;
+    numerotation:number;
+    numeroSerie:number;
+    miseEnPlace: string;
+    typemateriel:MTypeMateriel;
     etatMateriel:MEtatMateriel;
   }

@@ -1,0 +1,148 @@
+<div
+  class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-200 border-0"
+>
+  <div class="rounded-t bg-white mb-0 px-6 py-6">
+    <div class="text-center flex justify-between">
+      <h6 class="text-gray-800 text-xl font-bold">Ajouter dépêches pour un agent</h6>
+      <div>{{DateN|date}}</div>
+      <button
+        class="bg-green-500 text-white active:bg-green-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+        type="button"
+      >
+      Dépêches
+      </button>
+    </div>
+  </div>
+  <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+    <form #teamForm="ngForm" name="form">
+      <h6 class="text-gray-500 text-sm mt-3 mb-6 font-bold uppercase">
+        User Information
+      </h6>
+      <div class="flex flex-wrap">
+        <div class="w-full lg:w-6/12 px-4">
+          <div class="relative w-full mb-3">
+            <label
+              class="block uppercase text-gray-700 text-xs font-bold mb-2"
+              htmlFor="grid-password"
+            >
+             nom et prénom
+            </label>
+            <input
+              type="text"
+              [(ngModel)]="depDepeches.emetteur"
+              [ngModelOptions]="{standalone: true}"
+              class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
+              #emetteur="ngModel" required
+            />
+          </div>
+          <div *ngIf="emetteur.invalid && (emetteur.dirty || emetteur.touched)" class="erreur"> * Emetteur is required
+          </div>
+        </div>
+        <div class="w-full lg:w-6/12 px-4">
+         
+        </div>
+
+      <div class="w-full lg:w-6/12 px-4">
+          <div class="relative w-full mb-3">
+            <label
+              class="block uppercase text-gray-700 text-xs font-bold mb-2"
+              htmlFor="grid-password"
+            >
+              Heure
+            </label>
+            <input
+              type="time"
+              [(ngModel)]="depDepeches.heure"
+              [ngModelOptions]="{standalone: true}"
+              class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
+              #heure="ngModel" required 
+            />
+          </div>
+          <div *ngIf="heure.invalid && (heure.dirty || heure.touched)" class="erreur"> * Heure is required</div>
+        </div>
+        
+        <div  class="w-full lg:w-6/12 px-4">
+          <label  class="block uppercase text-gray-700 text-xs font-bold mb-2"
+          htmlFor="grid-password">Station</label>
+          <div class="mt-1" >
+            <select name="station" [(ngModel)]="seletcedStation" (selectionChange)="getStationId($event.value)" #station="ngModel"  required class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150">
+              <option value="small" *ngFor="let station of stations" [value]="station.id">{{station.libelle}} </option>
+            </select>
+
+          </div>
+          <div *ngIf="station.invalid && (station.dirty || station.touched)" class="erreur"> * Station is required</div> 
+        </div>
+      </div>
+
+      <hr class="mt-6 border-b-1 border-gray-400" />
+
+      <h6 class="text-gray-500 text-sm mt-3 mb-6 font-bold uppercase">
+        Matériels
+      </h6>
+      <div class="flex flex-wrap">
+        <div  class="w-full lg:w-6/12 px-4">
+          <label  class="block uppercase text-gray-700 text-xs font-bold mb-2"
+          htmlFor="grid-password">Equipement</label>
+          <div class="mt-1" >
+            <select name="material" [(ngModel)]="seletcedEquipement" (selectionChange)="getMaterialId($event.value)" #equipement="ngModel" required class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150">
+              <option value="small" *ngFor="let material of materials" [value]="material.id">{{material.libelle}}</option>
+            </select>
+
+          </div>
+          <div *ngIf="equipement.invalid && (equipement.dirty || equipement.touched)" class="erreur"> * Equipement is
+            required</div>
+        </div>
+        <div  class="w-full lg:w-6/12 px-4">
+          <label  class="block uppercase text-gray-700 text-xs font-bold mb-2"
+          htmlFor="grid-password">Annomalie</label>
+          <div class="mt-1" >
+            <select name="anomalie" [(ngModel)]="seletcedAnomalie" (selectionChange)="getAnomalieId($event.value)" #anomalie="ngModel" required class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150">
+              <option value="small" *ngFor="let anomalie of anomalies" [value]="anomalie.id">{{anomalie.libelle}}</option>
+            </select>
+          </div>
+          <div *ngIf="anomalie.invalid && (anomalie.dirty || anomalie.touched)" class="erreur"> * Anomalie is required
+          </div>          
+        </div>
+        
+        
+      </div>
+
+      <hr class="mt-6 border-b-1 border-gray-400" />
+
+      <h6 class="text-gray-500 text-sm mt-3 mb-6 font-bold uppercase">
+        Description
+      </h6>
+      <div class="flex flex-wrap">
+        <div class="w-full lg:w-12/12 px-4">
+          <div class="relative w-full mb-3">
+            <label
+              class="block uppercase text-gray-700 text-xs font-bold mb-2"
+              htmlFor="grid-password"
+            >
+              Description
+            </label>
+            <textarea
+              type="text"
+              [(ngModel)]="depDepeches.reparageDescription"
+              [ngModelOptions]="{standalone: true}" #description="ngModel" required
+              class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
+              rows="4"
+            >
+                 
+                </textarea
+            >
+          </div>
+        </div>
+        <div *ngIf="description.invalid && (description.dirty || description.touched)" class="erreur"> * Description is required </div>
+      </div>
+
+       <button
+          class="bg-green-500 text-white active:bg-green-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150 grid justify-items-stretch"
+          type="button"
+          (click)="addDepeche()"
+               >
+        envoyer
+        </button>
+    </form>
+  </div>
+</div>

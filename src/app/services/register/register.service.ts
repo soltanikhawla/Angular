@@ -26,6 +26,7 @@ export class RegisterService {
 
   register(utilisateur): Observable<MUtilisateur>{ 
     return this.http.post<MUtilisateur>(AUTH_API + 'api/inscription',utilisateur, httpOptions);
+    
   }
 
   public signOut(): void {

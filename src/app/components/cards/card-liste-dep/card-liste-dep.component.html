@@ -1,0 +1,273 @@
+<div
+  class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded"
+  [ngClass]="color === 'light' ? 'bg-white' : 'bg-red-900 text-white'"
+>
+<div class="rounded-t bg-white mb-0 px-6 py-6">
+  <div class="text-center flex justify-between">
+    <h6 class="text-gray-800 text-xl font-bold">Liste des dépêches</h6>
+    <div></div>
+        <form
+      class="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3"
+    >
+    <div class="relative flex w-full flex-wrap items-stretch">
+       
+      <span 
+      *ngFor="let user of users" 
+        class="z-10 h-full leading-snug font-normal absolute text-center text-blueGray-300 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3">
+        <button ><i class="fas fa-search" title="rechercher"></i> </button>
+      </span>
+      <input
+       [(ngModel)]="userFilter.emetteur"
+        [ngModelOptions]="{standalone: true}"
+        type="text"
+        placeholder="Search here..."
+        class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:ring w-full pl-10"
+      /></div>
+      
+    </form>
+    <form
+    class="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3"
+  >
+    <div class="relative flex w-full flex-wrap items-stretch">
+     
+      <span 
+      *ngFor="let depeche of depeches" 
+        class="z-10 h-full leading-snug font-normal absolute text-center text-blueGray-300 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3">
+        <button ><i class="fas fa-search" title="rechercher"></i> </button>
+      </span>
+      <input
+        [(ngModel)]="userFilter.heure"
+        [ngModelOptions]="{standalone: true}"
+        type="time"
+        placeholder="Search here..."
+        class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:ring w-full pl-10"
+      />
+      
+    </div>
+    
+  </form>
+    
+  <!-- <button><i class="fa fa-retweet text-xl"  aria-hidden="true"></i></button> -->
+  </div>
+</div>
+  <div class="block w-full overflow-x-auto">
+    <!-- Projects table -->
+    <table class="items-center w-full bg-transparent border-collapse">
+      <thead>
+        <tr>
+          <th
+            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+            [ngClass]="
+              color === 'light'
+                ? 'bg-blueGray-50 text-red-300 border-blueGray-100'
+                : 'bg-red-800 text-red-300 border-red-700'
+            "
+          >
+          Numéro
+          </th>
+          <th
+            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+            [ngClass]="
+              color === 'light'
+                ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
+                : 'bg-red-800 text-red-300 border-red-700'
+            "
+          >
+          Destinataire
+          </th>
+          <th
+            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+            [ngClass]="
+              color === 'light'
+                ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
+                : 'bg-red-800 text-red-300 border-red-700'
+            "
+          >
+          reparageDescription
+          </th>
+          <th
+            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+            [ngClass]="
+              color === 'light'
+                ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
+                : 'bg-red-800 text-red-300 border-red-700'
+            "
+          >
+          heure
+          </th>
+          <th
+          class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+          [ngClass]="
+            color === 'light'
+              ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
+              : 'bg-red-800 text-red-300 border-red-700'
+          "
+        >
+        Date
+        </th>
+          <th
+            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+            [ngClass]="
+              color === 'light'
+                ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
+                : 'bg-red-800 text-red-300 border-red-700'
+            "
+          >
+          
+          emetteur
+
+          </th>
+          <th
+            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+            [ngClass]="
+              color === 'light'
+                ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
+                : 'bg-red-800 text-red-300 border-red-700'
+            "
+          >
+             annomalie
+          </th>
+          <th
+            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+            [ngClass]="
+              color === 'light'
+                ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
+                : 'bg-red-800 text-red-300 border-red-700'
+            "
+          >station</th>
+          <th
+          class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+          [ngClass]="
+            color === 'light'
+              ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
+              : 'bg-red-800 text-red-300 border-red-700'
+          "
+        >Equipement</th>
+          <th
+          class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+          [ngClass]="
+            color === 'light'
+              ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
+              : 'bg-red-800 text-red-300 border-red-700'
+          "
+        >services</th>
+        <th
+        class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+        [ngClass]="
+          color === 'light'
+            ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
+            : 'bg-red-800 text-red-300 border-red-700'
+        "
+      >Status</th>
+      <th
+      class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+      [ngClass]="
+        color === 'light'
+          ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
+          : 'bg-red-800 text-red-300 border-red-700'
+      "
+    ></th>
+    <th
+      class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+      [ngClass]="
+        color === 'light'
+          ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
+          : 'bg-red-800 text-red-300 border-red-700'
+      "
+    ></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let depeche of depeches | filterBy: userFilter ">
+          <th
+            class="border-t-0 border border-solid  px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4"
+          >
+          
+            
+          <span class="status"
+              class="ml-3 font-bold"
+              [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-white'"
+              [ngStyle]="{'background-color':depeche.etatDepeche.color}"
+            >
+            {{depeche.numero}}
+            </span>
+          </th>
+          <td
+          class="border-t-0 border border-solid  px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+          
+        >
+        <p class="status" [ngStyle]="{'background-color':depeche.etatDepeche.color}">
+         {{depeche.utilisateur.firstName}} {{depeche.utilisateur.lastName}}
+        </p>
+        </td>
+          <td
+            class="border-t-0 border border-solid  px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+          >
+           {{depeche.reparageDescription}}
+          </td>
+          <td
+            class="border-t-0 border border-solid px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+          >
+           {{depeche.heure}}
+          </td>
+          <td
+          class="border-t-0 px-6 border border-solid  align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+        >
+         {{depeche.dateCreation | date : 'mediumDate'}}
+        </td>
+          <td
+            class="border-t-0 border border-solid  px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+          >
+          <p  class="status" [ngStyle]="{'background-color':depeche.etatDepeche.color}"> {{depeche.emetteur}}</p>
+         
+          </td>
+          <td
+          class="border-t-0 border border-solid  px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+        >
+          {{depeche.anomalie.libelle}}
+        </td>
+          <td
+            class="border-t-0 border border-solid  px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+          >
+           {{depeche.station.libelle}} 
+          </td>
+          <td
+          class="border-t-0 border border-solid  px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+        >
+         {{depeche.materiel.libelle}} 
+        </td>
+          <td
+          class="border-t-0 border border-solid   px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+        >
+         {{depeche.services.libelle}} 
+        </td>
+
+        <td
+        class="border-t-0 border border-solid   px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+        >
+        <p class="status" [ngStyle]="{'background-color':depeche.etatDepeche.color}">{{depeche.etatDepeche.libelle}} </p>
+        
+      </td>
+          <td
+            class="border-t-0 border border-solid   px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right"
+          >
+          <!--  <app-depeches-dropdown></app-depeches-dropdown>-->
+          <button>
+            
+            <i class="fa fa-trash mr-2 border-t-0 text-sm " title="supprimer" aria-hidden="true" (click)="onDeleteDepeche(depeche.id)"></i></button>
+            
+          </td>
+          <td
+          class="border-t-0 border border-solid  px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right"
+        >
+        <!--  <app-depeches-dropdown></app-depeches-dropdown>-->
+        <button (click) ="getDepecheById(depeche.id)">
+          
+          <i class="fa fa-wrench" aria-hidden="true"></i></button>
+          
+        </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

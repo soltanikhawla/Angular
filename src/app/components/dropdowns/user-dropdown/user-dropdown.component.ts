@@ -15,9 +15,9 @@ export class UserDropdownComponent implements OnInit {
   }
   popper = document.createElement("div");
   ngOnInit() {
-    this.popper.innerHTML = `<div class="bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg mt-1" style="min-width:12rem" #popoverDropdownRef>
+    this.popper.innerHTML = `<div class="bg-white text-base z-50 float-left text-green-500  py-2 list-none text-center rounded shadow-lg mt-1" style="min-width:12rem" #popoverDropdownRef>
   <button type="button" class="sign-button" onclick="Window.UserDropdownComponent.signOutEmit()">
-      Sign out
+     Se déconnecter
     </button>
 </div>`;
   }
@@ -48,7 +48,8 @@ export class UserDropdownComponent implements OnInit {
   signOutEmit(){
     console.log("ggggggggggggg")
     this.tokenStorage.signOut();
-    this.router.navigate(['/auth/login']).then();
+    this.router.navigate(['/auth/login']);
+    window.location.reload();
    
   }
 

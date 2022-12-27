@@ -1,26 +1,82 @@
 import { Component, OnInit, AfterViewInit } from "@angular/core";
-import Chart from "chart.js";
+import{Chart}  from "chart.js";
+import { MultiDataSet, Label } from 'ng2-charts';
+import { ChartType } from 'chart.js';
+import { DepecheService } from "src/app/services/depeche/depeche.service";
+import { MNombreDepeche } from "src/app/views/Models/NombreDepecheParStatus";
 
 @Component({
   selector: "app-card-line-chart",
   templateUrl: "./card-line-chart.component.html",
 })
 export class CardLineChartComponent implements OnInit {
-  constructor() {}
+  toDo: MNombreDepeche = new MNombreDepeche;
+  onGoing: MNombreDepeche = new MNombreDepeche;
+  done: MNombreDepeche  = new MNombreDepeche;
 
-  ngOnInit() {}
+  doughnutChartLabels: Label[] = ['To Do', 'Ongoing', 'Done'];
+  doughnutChartData: MultiDataSet = [
+
+  ];
+  doughnutChartType: ChartType = 'bar';
+
+  public chartColors: Array<any> = [
+    {
+      backgroundColor: ['#f51505', '#ffa83d', '#4ec24f'],
+      hoverBackgroundColor: ['#ba1004', '#d18528', '#419c42'],
+      borderWidth: 2,
+    }
+  ];
+
+
+  constructor(private depecheService: DepecheService) {}
+
+  ngOnInit() {
+    this.geNombretDepecheToDo();
+    this.geNombretDepecheOnGoing();
+    this.geNombretDepecheDone();
+    console.log(this.doughnutChartData)
+  }
+
+  geNombretDepecheToDo(){
+    this.depecheService.getNombreDepecheToDo().subscribe(data =>{
+      this.toDo = data;
+      console.log(this.toDo);
+      this.doughnutChartData =  [
+        [this.toDo.nombre, this.onGoing.nombre, this.done.nombre,0]
+      ];
+    })
+  }
+
+  geNombretDepecheOnGoing(){
+    this.depecheService.getNombreDepecheOnGoing().subscribe(data =>{
+      this.onGoing = data;
+      console.log(this.onGoing)
+      this.doughnutChartData =  [
+        [this.toDo.nombre, this.onGoing.nombre, this.done.nombre,0]
+      ];
+    })
+  }
+
+  geNombretDepecheDone(){
+    this.depecheService.getNombreDepecheDone().subscribe(data =>{
+      this.done = data;
+      this.doughnutChartData =  [
+        [this.toDo.nombre, this.onGoing.nombre, this.done.nombre,0]
+      ];
+    })
+  }
+
+
+  /*
   ngAfterViewInit() {
     var config = {
-      type: "line",
+      type: "bar",
       data: {
         labels: [
           "January",
           "February",
           "March",
-          "April",
-          "May",
-          "June",
-          "July",
         ],
         datasets: [
           {
@@ -112,6 +168,6 @@ export class CardLineChartComponent implements OnInit {
     };
     let ctx: any = document.getElementById("line-chart") as HTMLCanvasElement;
     ctx = ctx.getContext("2d");
-    new Chart(ctx, config);
-  }
+   // new Chart(ctx, config);
+  }*/
 }

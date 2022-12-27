@@ -8,7 +8,7 @@ export class MUtilisateur {
     login: string;
     password: string;
     matricule: number;
-    code: number;
+    code: string;
     disponible: boolean;
     role: MRole;
 

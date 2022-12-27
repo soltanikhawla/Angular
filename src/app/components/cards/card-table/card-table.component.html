@@ -2,301 +2,243 @@
   class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded"
   [ngClass]="color === 'light' ? 'bg-white' : 'bg-red-900 text-white'"
 >
-  <div class="rounded-t mb-0 px-4 py-3 border-0">
-    <div class="flex flex-wrap items-center">
-      <div class="relative w-full px-4 max-w-full flex-grow flex-1">
-        <h3
-          class="font-semibold text-lg"
-          [ngClass]="color === 'light' ? 'text-gray-800' : 'text-white'"
-        >
-         Tables des employées
-        </h3>
+<div class="rounded-t bg-white mb-0 px-6 py-6">
+  <div class="text-center flex justify-between">
+    <h6 class="text-gray-800 text-xl font-bold">Liste des employées</h6>
+    <div></div>
+        <form
+      class="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3"
+    >
+      <div class="relative flex w-full flex-wrap items-stretch">
+       
+        <span 
+        *ngFor="let user of users" 
+          class="z-10 h-full leading-snug font-normal absolute text-center text-blueGray-300 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3">
+          <button ><i class="fas fa-search" title="rechercher"></i> </button>
+        </span>
+        <input
+         [(ngModel)]="userFilter.firstName"
+          [ngModelOptions]="{standalone: true}"
+          type="text"
+          placeholder="Search here..."
+          class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:ring w-full pl-10"
+        />
       </div>
-    </div>
+    </form>
+    <button
+      title="ajouter"
+      class="bg-green-500 text-white active:bg-green-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+      type="button"
+      [routerLink]="['/auth/register']"
+      >ajouter un employée
+  
+    </button>
+  <!--<button><i class="fa fa-retweet text-xl"  aria-hidden="true"></i></button> --> 
   </div>
+</div>
   <div class="block w-full overflow-x-auto">
     <!-- Projects table -->
     <table class="items-center w-full bg-transparent border-collapse">
       <thead>
         <tr>
-          
           <th
-            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left"
+            class="px-6 align-middle border border-solid py-3 text-sm text-blue-400 uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
             [ngClass]="
               color === 'light'
-                ? 'bg-gray-100 text-gray-600 border-gray-200'
+                ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
                 : 'bg-red-800 text-red-300 border-red-700'
             "
           >
-            Nom et Prenom
+            Nom 
           </th>
           <th
-            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left"
+          class="px-6 align-middle border border-solid py-3 text-xs text-blue-400 uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+          [ngClass]="
+            color === 'light'
+              ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
+              : 'bg-red-800 text-red-300 border-red-700'
+          "
+        >
+          prenom
+        </th>
+          <th
+            class="px-6 align-middle border border-solid py-3 text-xs text-blue-400 uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
             [ngClass]="
               color === 'light'
-                ? 'bg-gray-100 text-gray-600 border-gray-200'
+                ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
                 : 'bg-red-800 text-red-300 border-red-700'
             "
           >
-            Budget
+            code
           </th>
           <th
-            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left"
+            class="px-6 align-middle border border-solid py-3 text-xs text-blue-400 uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
             [ngClass]="
               color === 'light'
-                ? 'bg-gray-100 text-gray-600 border-gray-200'
+                ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
                 : 'bg-red-800 text-red-300 border-red-700'
             "
           >
-            Status
+            matricule
           </th>
           <th
-            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left"
+            class="px-6 align-middle border border-solid py-3 text-xs text-blue-400 uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
             [ngClass]="
               color === 'light'
-                ? 'bg-gray-100 text-gray-600 border-gray-200'
+                ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
                 : 'bg-red-800 text-red-300 border-red-700'
             "
           >
-            Users
+            téléphone
           </th>
           <th
-            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left"
+            class="px-6 align-middle border border-solid py-3 text-xs text-blue-400 uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
             [ngClass]="
               color === 'light'
-                ? 'bg-gray-100 text-gray-600 border-gray-200'
+                ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
                 : 'bg-red-800 text-red-300 border-red-700'
             "
           >
-            Completion
+            Role
           </th>
           <th
-            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left"
+            class="px-6 align-middle border border-solid py-3 text-xs text-blue-400 uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
             [ngClass]="
               color === 'light'
-                ? 'bg-gray-100 text-gray-600 border-gray-200'
+                ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
                 : 'bg-red-800 text-red-300 border-red-700'
             "
           ></th>
+          <th
+          class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+          [ngClass]="
+            color === 'light'
+              ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
+              : 'bg-red-800 text-red-300 border-red-700'
+          "
+        ></th>
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr *ngFor="let user of users | filterBy: userFilter">
           <th
-            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left flex items-center"
+            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center"
           >
-            <img
-              src=""
-              class="h-12 w-12 bg-white rounded-full border"
-              alt="..."
-            />
-            <span
+          <i class="fa fa-user" aria-hidden="true"></i>
+            
+          <span
               class="ml-3 font-bold"
-              [ngClass]="color === 'light' ? 'text-gray-700' : 'text-white'"
+              [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-white'"
             >
-           xxxxx yyyyyy
+              {{user.firstName}} 
             </span>
           </th>
           <td
-            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
+          class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+        >
+        {{user.lastName}}
+        </td>
+          <td
+            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
           >
-            xxxxxx
+            {{user.code}}
           </td>
           <td
-            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
+            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
           >
-            <i class="fas fa-circle text-orange-500 mr-2"></i> xxxx
+            {{user.matricule}}
           </td>
           <td
-            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
+            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
           >
+           {{user.tel}}
+          </td>
+          <td
+            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+          >
+            {{user.role.libelle}}
+          </td>
+          <td
+            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right"
+            
+          >
+          <!--  <app-table-dropdown></app-table-dropdown> --> 
          
+
+
+          <button>
+            
+          <i class="fa fa-trash mr-2 border-t-0 text-sm " title="supprimer" aria-hidden="true" (click)="onDelete(user.id)"></i></button>
+
           </td>
           <td
-            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
+            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right"
+            
           >
-            <div class="flex items-center">
-              <span class="mr-2">xxx</span>
-              <div class="relative w-full">
-                <div
-                  class="overflow-hidden h-2 text-xs flex rounded bg-red-200"
-                >
-                  <div
-                    style="width: 60%;"
-                    class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500"
-                  ></div>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td
-            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-right"
-          >
-            <app-table-dropdown></app-table-dropdown>
+          <!--  <app-table-dropdown></app-table-dropdown> --> 
+         <button> <i class="fa fa-user text-sm" aria-hidden="true" (click) ="getProfilById(user.id)"></i></button>
+
           </td>
         </tr>
-        <tr>
-          <th
-            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left flex items-center"
+       
+
+       <!--
+        <th
+            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center"
           >
-            <img
-              src=""
-              class="h-12 w-12 bg-white rounded-full border"
-              alt="..."
-            />
+          <i class="fa fa-user" aria-hidden="true"></i>
             <span
               class="ml-3 font-bold"
-              [ngClass]="color === 'light' ? 'text-gray-700' : 'text-white'"
+              [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-white'"
             >
-           xxxxx yyyyyy
+              <input type="text" placeholder="Nom"
+              class="px-3 py-3 placeholder-green-500 text-gray-700 bg-green-50 rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150">
             </span>
           </th>
           <td
-            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
+          class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+        >
+        <input type="text" placeholder="Prenom"
+        class="px-3 py-3 placeholder-green-500 text-gray-700 bg-green-50 rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150">
+        </td>
+
+          <td
+            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
           >
-            xxxxxx
+          <input type="text" placeholder="Code"
+          class="px-3 py-3 placeholder-green-500 text-gray-700 bg-green-50 rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150">
           </td>
           <td
-            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
+            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
           >
-            <i class="fas fa-circle text-orange-500 mr-2"></i> xxxx
+           
+            <input type="text" placeholder="Maticule" 
+            class="px-3 py-3 placeholder-green-500 text-gray-700 bg-green-50 rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150">
           </td>
           <td
-            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
+            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
           >
+          <input type="text" placeholder="téléphone"  class="px-3 py-3 placeholder-green-500 text-gray-700 bg-green-50 rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150">
+          </td>
+          <td
+            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+          >
+          <button
+          class="bg-green-500 text-white active:bg-green-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150 grid justify-items-stretch"
+          type="button"
+        >
+        Ajouter
+        </button>
+          </td>
+          <td
+            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right"
+          >
+           
+          </td> -->
+      
          
-          </td>
-          <td
-            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
-          >
-            <div class="flex items-center">
-              <span class="mr-2">xxx</span>
-              <div class="relative w-full">
-                <div
-                  class="overflow-hidden h-2 text-xs flex rounded bg-red-200"
-                >
-                  <div
-                    style="width: 60%;"
-                    class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500"
-                  ></div>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td
-            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-right"
-          >
-            <app-table-dropdown></app-table-dropdown>
-          </td>
-        </tr>
-        <tr>
-          <th
-            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left flex items-center"
-          >
-            <img
-              src=""
-              class="h-12 w-12 bg-white rounded-full border"
-              alt="..."
-            />
-            <span
-              class="ml-3 font-bold"
-              [ngClass]="color === 'light' ? 'text-gray-700' : 'text-white'"
-            >
-           xxxxx yyyyyy
-            </span>
-          </th>
-          <td
-            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
-          >
-            xxxxxx
-          </td>
-          <td
-            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
-          >
-            <i class="fas fa-circle text-orange-500 mr-2"></i> xxxx
-          </td>
-          <td
-            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
-          >
-         
-          </td>
-          <td
-            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
-          >
-            <div class="flex items-center">
-              <span class="mr-2">xxx</span>
-              <div class="relative w-full">
-                <div
-                  class="overflow-hidden h-2 text-xs flex rounded bg-red-200"
-                >
-                  <div
-                    style="width: 60%;"
-                    class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500"
-                  ></div>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td
-            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-right"
-          >
-            <app-table-dropdown></app-table-dropdown>
-          </td>
-        </tr>
-        <tr>
-          <th
-            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left flex items-center"
-          >
-            <img
-              src=""
-              class="h-12 w-12 bg-white rounded-full border"
-              alt="..."
-            />
-            <span
-              class="ml-3 font-bold"
-              [ngClass]="color === 'light' ? 'text-gray-700' : 'text-white'"
-            >
-           xxxxx yyyyyy
-            </span>
-          </th>
-          <td
-            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
-          >
-            xxxxxx
-          </td>
-          <td
-            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
-          >
-            <i class="fas fa-circle text-orange-500 mr-2"></i> xxxx
-          </td>
-          <td
-            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
-          >
-         
-          </td>
-          <td
-            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
-          >
-            <div class="flex items-center">
-              <span class="mr-2">xxx</span>
-              <div class="relative w-full">
-                <div
-                  class="overflow-hidden h-2 text-xs flex rounded bg-red-200"
-                >
-                  <div
-                    style="width: 60%;"
-                    class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500"
-                  ></div>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td
-            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-right"
-          >
-            <app-table-dropdown></app-table-dropdown>
-          </td>
-        </tr>
+
+
       </tbody>
     </table>
   </div>

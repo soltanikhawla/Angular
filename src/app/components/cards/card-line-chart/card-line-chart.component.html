@@ -5,18 +5,27 @@
     <div class="flex flex-wrap items-center">
       <div class="relative w-full max-w-full flex-grow flex-1">
         <h6 class="uppercase text-gray-200 mb-1 text-xs font-semibold">
-          Overview
+          <!--statistique-->
         </h6>
         <h2 class="text-white text-xl font-semibold">
-          Sales value
+        statistique
         </h2>
       </div>
     </div>
   </div>
   <div class="p-4 flex-auto">
     <!-- Chart -->
-    <div class="relative" style="height: 350px;">
-      <canvas id="line-chart"></canvas>
+    <div class="relative" style="height: 500px;">
+      <!--
+      <canvas id="line-chart"></canvas>-->
+      <div class="chart-wrapper">
+        <canvas baseChart 
+        [data]="doughnutChartData"
+        [labels]="doughnutChartLabels"
+        [colors]="chartColors"
+        [chartType]="doughnutChartType">
+      </canvas>
+    </div>    
     </div>
   </div>
 </div>
